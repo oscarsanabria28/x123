@@ -1,0 +1,42 @@
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    title Crear Receta
+    link(rel='stylesheet', type='text/css', href='/css/estilos.css')
+    script(src='/js/w3.js')
+  body
+    div(w3-include-html='/HeaterB.html')
+    div(w3-include-html='/FooterB.html')
+    form#rform(action='http://localhost:8080/Login/aBaseDatosReceta', enctype='application/x-www-form-urlencoded', method='POST')
+      div(<label='', for='temperatura')
+        | Temperatura  
+        input(type='text', name='temperatura')
+      div(<label='', for='presion')
+        | Presion          
+        input(type='text', name='presion')
+      div(<label='', for='fechasis')
+        | Fecha           
+        input(type='text', name='fechasis',value=todayPug,readonly='')
+      div(<label='', for='horasis')
+        | Hora            
+        input(type='text', name='horasis',value=hourPug,readonly='')
+      div(<label='', for='observaciones')
+        | Observaciones   
+        input(type='text', name='observaciones')
+      div(<label='', for='tratamiento')
+        | Tratamiento     
+        input(type='text', name='tratamiento')
+      div(<label='', for='proxfecha')
+        | Sugerencia Proxima Cita  
+        input(type='date', name='proxfecha')
+      div(<label='', for='notificacion')
+        | Enviar Notificación   
+        input(type='radio', name='notificacion', value='Si')
+        | Si 
+        input(type='radio', name='notificacion', value='No')
+        | No
+      div(<label='', for='recomendaciones')
+        | Recomendaciones   
+        textarea(name='recomendaciones', form='rform') Comenta aqui...
+      button(type='submit', name='buttonGo') Crear Receta

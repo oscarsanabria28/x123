@@ -1,0 +1,53 @@
+<html>
+
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Crear Receta</title>
+		<link rel="stylesheet" type="text/css" href="/css/estilos.css">
+		<script src="/js/w3.js"> </script>
+		
+    </head>
+
+
+    <body>
+
+		<div w3-include-html="/HeaterB.html"></div>
+		<div w3-include-html="/FooterB.html"></div>
+	
+        <form action="http://localhost:8080/Login/aBaseDatosReceta" enctype="application/x-www-form-urlencoded" method="POST" id=rform>
+        
+           <div <label for="temperatura">Temperatura</label>  <input type="text"     name="temperatura" /> </div>
+            
+		   <div <label for="presion">Presion</label>          <input type="text"     name="presion" /> </div>
+			
+           <div <label for="fechasis">Fecha</label>           <input type="text"  name="fechasis" /> </div>
+		   
+		   <div <label for="horasis">Hora</label>            <input type="text"      name="horasis" /> </div>
+			
+		   <div <label for="observaciones">Observaciones</label>   <input type="text"     name="observaciones" /> </div>
+			
+		   <div <label for="tratamiento">Tratamiento</label>     <input type="text"      name="tratamiento" /> </div>
+		   
+		   <div <label for="proxfecha">Sugerencia Proxima Cita</label>  <input type="date"      name="proxfecha" /> </div>
+		   
+		   <div 
+				<label for="notificacion">Enviar Notificación</label>   <input type="radio" name="notificacion" value="Si">Si 
+																		<input type="radio" name="notificacion" value="No">No
+																		
+		   </div>
+		   
+		   <div <label for="recomendaciones">Recomendaciones</label>   <textarea name="recomendaciones" form="rform">Comenta aqui...</textarea> </div>
+		
+        <button type="submit" name="buttonGo">Crear Receta</button>
+        
+		<script>
+			w3IncludeHTML();
+		</script>
+		
+		
+		</form>
+
+    </body>
+
+</html>

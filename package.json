@@ -17,6 +17,7 @@
     "firebase-admin": "^5.9.1",
     "json-format": "^1.0.1",
     "mongo": "^0.1.0",
-    "mongodb": "^3.0.2"
+    "mongodb": "^3.0.2",
+    "pug": "^2.0.0-rc.4"
   }
 }
