@@ -15,6 +15,7 @@ dbfirebase.initializeApp({
 
 var db        = dbfirebase.database()
 var ref       = db.ref('users');
+var recipe   = db.ref('recipe');
 //var usuariodb = ref.child('user');
 
 
@@ -95,23 +96,15 @@ router.get('/rBaseUsuario', (req,res)=>{
 });
 
 /////////////////////////////    Bryan //////////////////////////////////////
-router.get('/Doctores', (req,res)=>{
+router.get('/doctor', (req,res)=>{
 		
 	
-	res.sendFile(path.join(__dirname, '../public', 'Doctores.html'));
+	res.sendFile(path.join(__dirname, '../public', 'doctor.html'));
 	
 		
 });
 
-router.get('/cReceta', (req,res)=>{
-	
-	
-	res.sendFile(path.join(__dirname, '../public', 'FormularioReceta.html'));
-
-	
-});
-
-router.post('/aBaseDatosReceta', (req,res)=>{
+router.post('/createRecipe', (req,res)=>{
 		
 	var temperatura      = req.body.temperatura;
 	var presion          = req.body.presion;
@@ -128,19 +121,20 @@ router.post('/aBaseDatosReceta', (req,res)=>{
 	var fechaB = fechaFormatoB[2]+'/'+fechaFormatoB[1]+'/'+fechaFormatoB[0]
 	
 	//////////////Insertar Base de datos///////////////////
-	/*
-	ref.push({
-		temp: temperatura,
-		pres: presion,
+	
+	
+	recipe.push({
+		temperature: temperatura,
+		pressure: presion,
 		datesys: fechasis,
 		hoursys: horasis,
-		obse: observaciones,
+		observation: observaciones,
 		treatm: tratamiento,
-		proxdate: proxfecha,
+		nextdate: proxfecha,
 		notify: notificacion,
-		recoment: recomendaciones
+		recomment: recomendaciones
 	});
-	*/
+	
 	/////////////Revizar///////////////////////////////////
 	/*
 	ref.once('value', function(snap){
