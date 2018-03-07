@@ -7,20 +7,28 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="/css/estilos.css">
 		
-		<script src="/js/w3.js"> </script>
 		<script src="/js/util.js"> </script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			
 	</head>
 	
 	<body>
-	
-		<div w3-include-html="/HeaterB.html"></div>
-		<div w3-include-html="/FooterB.html"></div>
+		
+		<div id="header"></div>
+		
+		
+		
 		
 		
 	<div class="container">	
 		<form  action="createRecipe" enctype="application/x-www-form-urlencoded" method="POST" id="createRecipe">
+			
+			<div class="form-group row"> 
+				<label for="pacientEmail" class="col-sm-2 col-form-label">Mail del paciente</label>
+				<div class="col-sm-10">	
+					<input type="text"   name="pacientEmail" required="true" class="form-control" /> 
+				</div>
+			</div>
 			
 			
            <div class="form-group row"> 
@@ -71,16 +79,21 @@
 			</div>
 		   
 		   
-
-   			   
-			<div  class="form-check"> 
-			    <div class="form-check">
-				<label for="notificacion">Enviar Notificación</label>   <input class="form-check-input" type="radio" name="notificacion" value="True"  required="true">Si 
-			</div>															
-																			<input type="radio" name="notificacion" value="False" required="true" checked="checked">No
-																			
-			   </div>
-		   
+			 <fieldset class="form-group row">
+				<label class="col-sm-2">Notificación</label>
+				   
+				<div  class="form-check"> 
+					<label for="notificacion" class="form-check-label">   
+						<input class="form-check-input" type="radio" name="notificacion" value="true"  required="true">Si 
+					</label> 	
+				</div>															
+					
+				<div  class="form-check">
+					<label for="notificacion" class="form-check-label"> 
+						<input class="form-check-input" type="radio" name="notificacion" value="false" required="true" checked="checked">No															
+					</label> 	
+				 </div>
+			 </fieldset>
 		   
 			
 			
@@ -93,11 +106,15 @@
         
 		
 		</form>
-		</div>
+	</div>
 		
+		<div id="myfooter"></div>
 		<script>
 			$( document ).ready(function() {
-				w3IncludeHTML();
+			
+				
+				$("#header").load("HeaterB.html");
+				$("#myfooter").load("FooterB.html");
 				
 				$('#dateSystem').val(getCurrentdate());
 				$('#hourSystem').val(getCurrenthour());
@@ -109,6 +126,8 @@
 			e.preventDefault(); //prevent the default action 
 			}
 		});	
+		
+		
 		</script>
 	</body>
 </html> 
