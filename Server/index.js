@@ -102,6 +102,19 @@ router.get('/doctor', (req,res)=>{
 		
 });
 
+router.get('/recipe', (req,res)=>{
+		
+	if(!req.session.mail) {
+		console.log('incorrect sess mail');
+	   res.redirect('login');
+	}else
+	
+	
+	res.sendFile(path.join(__dirname, '../public', 'doctorrecipe.html'));
+	
+		
+});
+
 router.post('/createRecipe', (req,res)=>{
 	
 	if(!req.session.mail) {
@@ -121,10 +134,19 @@ router.post('/createRecipe', (req,res)=>{
 	var notificacion     = req.body.notificacion;
 	var recomendaciones  = req.body.recomendaciones;
 	
+	var fechaFormatoB;
+	var fechaB;
 	
-	var fechaFormatoB = proxfecha.split("-");
-	var fechaB = fechaFormatoB[2]+'/'+fechaFormatoB[1]+'/'+fechaFormatoB[0]
-	
+	if(!proxfecha)
+	{
+		fechaB ='Sin información';
+		
+	}	
+	else{
+		fechaFormatoB = proxfecha.split("-");
+		fechaB = fechaFormatoB[2]+'/'+fechaFormatoB[1]+'/'+fechaFormatoB[0]
+	}
+			
 	//////////////Insertar Base de datos///////////////////
 	
 	
@@ -221,7 +243,7 @@ router.post('/getRecipesByCurrentUser', (req,res)=>{
 	}else{
 
 
-	getRecipes(req.session.mail,function(resp){
+	getRecipes(req.session.mail,'pacientemail',function(resp){
 		if(resp==null){
 			res.send('no-data');
 		}else{
@@ -232,8 +254,8 @@ router.post('/getRecipesByCurrentUser', (req,res)=>{
 	}
 });
 
-function getRecipes(user, callback){
-	recipe.orderByChild('pacientemail').equalTo(user).on("value", function(snapshot) {
+function getRecipes(user,field, callback){
+	recipe.orderByChild(field).equalTo(user).on("value", function(snapshot) {
 
 		if(snapshot.val()==null){
 			callback(null);
@@ -248,6 +270,26 @@ function getRecipes(user, callback){
 		}
 	});
 }
+//////////////////////////////////////
+
+router.post('/getRecipesByCurrentDoctor', (req,res)=>{
+	
+	if(!req.session.mail) {
+		console.log('incorrect sess mail');
+	   res.send('no-session-data');
+	}else{
+
+
+	getRecipes(req.session.mail,'doctoremail',function(resp){
+		if(resp==null){
+			res.send('no-data');
+		}else{
+			res.send(resp);
+		}
+	});
+
+	}
+});
 
 
 
