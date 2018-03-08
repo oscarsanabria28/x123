@@ -29,3 +29,18 @@
 	height: auto;
 	margin-left: 15%;	
 }
+
+.recipes-container{
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 15px;
+}
+.login-container{
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 5%;
+}
+.img-login{
+	width: 50%;
+	margin-bottom:7%;
+}
