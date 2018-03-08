@@ -61,33 +61,45 @@ function createRow(item,position){
 }
 
 function createItemLabels(item){
+
+  var mail = item.doctoremail==null ? "Sin Info" : item.doctoremail;
+  var date = item.datesys==null ? "Sin Info" : item.datesys;
+  var hour = item.hoursys==null ? "Sin Info" : item.hoursys;
+  var nextDate = (item.nextdate==null || item.nextdate=="") ? "Sin Info" : item.nextdate;
+  var pressure = item.pressure==null ? "Sin Info" : item.pressure;
+  var temp = item.temperature==null ? "Sin Info" : item.temperature;
+  var notify = item.notify==null ? "Sin Info" : item.notify;
+  var recomm = item.recomment==null ? "Sin Info" : item.recomment;
+  var observation = item.observation==null ? "Sin Info" : item.observation;
+  var treatm = item.treatm==null ? "Sin Info" : item.treatm;
+  
   var res=''
     +'<div class="col-sm-12">'
-    +'<label>Mail del Doctor: </label> <p>'+item.doctoremail+'</p>'
+    +'<label>Mail del Doctor: </label> <p>'+mail+'</p>'
     +'</div>'
     +'<div class="col-sm-6">'
-    +'<label>Fecha de la consulta: </label> <p>'+item.datesys +' a '+item.hoursys+'</p>'
+    +'<label>Fecha de la consulta: </label> <p>'+date +' a '+hour+'</p>'
     +'</div>'
     +'<div class="col-sm-6">'
-    +'<label>Próxima cita: </label> <p>'+item.nextdate+'</p>'
+    +'<label>Próxima cita: </label> <p>'+nextDate+'</p>'
     +'</div>'
     +'<div class="col-sm-4">'
-    +'<label>Presión: </label> <p>'+item.pressure+'</p>'
+    +'<label>Presión: </label> <p>'+pressure+'</p>'
     +'</div>'
     +'<div class="col-sm-4">'
-    +'<label>Temperatura: </label> <p>'+item.temperature+'</p>'
+    +'<label>Temperatura: </label> <p>'+temp+'</p>'
     +'</div>'
     +'<div class="col-sm-4">'
-    +'<label>Notificación: </label> <p>'+item.notify+'</p>'
+    +'<label>Notificación: </label> <p>'+notify+'</p>'
     +'</div>'
     +'<div class="col-sm-6">'
-    +'<label>Recomendaciones: </label> <p>'+item.recomment+'</p>'
+    +'<label>Recomendaciones: </label> <p>'+recomm+'</p>'
     +'</div>'
     +'<div class="col-sm-6">'
-    +'<label>Observaciones: </label> <p>'+item.observation+'</p>'
+    +'<label>Observaciones: </label> <p>'+observation+'</p>'
     +'</div>'
     +'<div class="col-sm-12">'
-    +'<label>Tratamiento: </label> <p>'+item.treatm+'</p>'
+    +'<label>Tratamiento: </label> <p>'+treatm+'</p>'
     +'</div>';
   return res;
 }
