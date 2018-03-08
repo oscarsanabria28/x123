@@ -1,12 +1,31 @@
+/* Footer*/
 .myfooterc {
 	   margin: 20px;
 	   left: 0;
 	   bottom: 0;
 	   width: 100%;
-	   background-color: blue;
-	   color: white;
+	   background-color: #DCDCDC;
+	   color: black;
 	   text-align: center;
+	   padding-top:2%;
+	   padding-bottom: 1%;
+	  
 }
 
 
+.navbar-custom-color{
+	background-color: #DCDCDC;
+	
+}
 
+
+.container{	
+	width: 60%;
+	margin-top: 20px;
+}
+
+.logoimagen{
+	width: 25%;
+	height: auto;
+	margin-left: 15%;	
+}

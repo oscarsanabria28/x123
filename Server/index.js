@@ -138,7 +138,7 @@ router.post('/createRecipe', (req,res)=>{
 		hoursys: horasis,
 		observation: observaciones,
 		treatm: tratamiento,
-		nextdate: proxfecha,
+		nextdate: fechaB,
 		notify: notificacion,
 		recomment: recomendaciones
 	});
