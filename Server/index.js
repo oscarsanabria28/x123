@@ -66,25 +66,23 @@ router.post('/validateUser', (req,res)=>{
 	var usuario = req.body.username;
 	var passw   = req.body.password;
 	
-	db_users_info.orderByChild('mail').equalTo(usuario).on("child_added", function(snapshot) {
 
-		if(snapshot.val()==null){
+	getUser(usuario,function(resp){
+		console.log(resp);
+		if(resp==null){
 			res.redirect('login');
-		}else if(snapshot.val().password===passw){
-			req.session.mail=snapshot.val().mail;
-			req.session.profile=snapshot.val().profile;
+		}else if(resp.password===passw){
+			req.session.mail=resp.mail;
+			req.session.profile=resp.profile;
 
 			if(req.session.profile===PROFILE_DOCTOR){
 				res.redirect('doctor');
 			}else{
 				res.redirect('patient');
 			}
-
-			
-		}else{
-			res.redirect('login');
 		}
-	});	
+	});
+	
 });
 
 
@@ -245,6 +243,19 @@ function getRecipes(user, callback){
 		    response.push(data.val());
 		 	});
 			callback(JSON.stringify(response));
+		}
+	});
+}
+
+function getUser(user, callback){
+	db_users_info.orderByChild('mail').equalTo(user).on("value", function(snapshot) {
+		console.log(snapshot);
+		if(snapshot.val()===null){
+			callback(null);
+		}else {
+			snapshot.forEach(function(data) {
+		    callback(data.val());
+		 	});
 		}
 	});
 }
