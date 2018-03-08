@@ -4,7 +4,7 @@ const router            = express.Router();
 const fs                = require('fs');
 const dbfirebase        = require("firebase-admin");
 const EncryptAndDecrypt = require('../lib/EncryptAndDecrypt.js');
-const ConsolLog         = require('../lib/ConsolLog.js');
+const ConsolLog         = require('../lib/ConsolLog/ConsolLog.js');
 const serviceAccount    = require("../medical-cbf55-firebase-adminsdk-ebmfs-5626c57b76.json");
 const bodyParser 			= require('body-parser');
 
@@ -15,7 +15,7 @@ dbfirebase.initializeApp({
 
 const db        = dbfirebase.database()
 var db_users_info       = db.ref('users-info');
-var table_recipe      = db.ref('recipe');
+var recipe      = db.ref('recipe');
 
 const PROFILE_DOCTOR="doctor";
 const PROFILE_PACIENT="pacient";
@@ -55,7 +55,7 @@ router.get('/bBaseUsuario', (req,res)=>{
 		profile:"pacient"
 	});
 	
-	
+	ConsolLog.logger(usuario);
 	
 	
 	res.send('Encriptados Locos');	
@@ -85,6 +85,88 @@ router.post('/validateUser', (req,res)=>{
 			res.redirect('login');
 		}
 	});	
+});
+
+
+/////////////////////////////    Bryan //////////////////////////////////////
+router.get('/doctor', (req,res)=>{
+		
+	if(!req.session.mail) {
+		console.log('incorrect sess mail');
+	   res.redirect('login');
+	}else
+	
+	
+	res.sendFile(path.join(__dirname, '../public', 'doctor.html'));
+	
+		
+});
+
+router.post('/createRecipe', (req,res)=>{
+	
+	if(!req.session.mail) {
+		console.log('incorrect sess mail');
+	   res.redirect('login');
+	}else{
+	
+	
+	var pacientemail     = req.body.pacientEmail;	
+	var temperatura      = req.body.temperatura;
+	var presion          = req.body.presion;
+	var fechasis         = req.body.fechasis;
+	var horasis          = req.body.horasis;
+	var observaciones    = req.body.observaciones;
+	var tratamiento      = req.body.tratamiento;
+	var proxfecha        = req.body.proxfecha;
+	var notificacion     = req.body.notificacion;
+	var recomendaciones  = req.body.recomendaciones;
+	
+	
+	var fechaFormatoB = proxfecha.split("-");
+	var fechaB = fechaFormatoB[2]+'/'+fechaFormatoB[1]+'/'+fechaFormatoB[0]
+	
+	//////////////Insertar Base de datos///////////////////
+	
+	
+	recipe.push({
+		doctoremail: req.session.mail,
+		pacientemail:pacientemail,
+		temperature: temperatura,
+		pressure: presion,
+		datesys: fechasis,
+		hoursys: horasis,
+		observation: observaciones,
+		treatm: tratamiento,
+		nextdate: proxfecha,
+		notify: notificacion,
+		recomment: recomendaciones
+	});
+	
+	/////////////Revisar///////////////////////////////////
+	/*
+	ref.once('value', function(snap){
+		var usu = snap.val();
+		
+		//var datos = usu.toString();
+		console.log(usu);
+	});
+	*/
+	/////////////////////////////////////////////////////
+	ConsolLog.logger(pacientemail);
+	ConsolLog.logger(temperatura);
+	ConsolLog.logger(presion);
+	ConsolLog.logger(fechasis);
+	ConsolLog.logger(horasis);
+	ConsolLog.logger(observaciones);
+	ConsolLog.logger(tratamiento);
+	ConsolLog.logger(fechaB);
+	ConsolLog.logger(notificacion);
+	ConsolLog.logger(recomendaciones);
+	
+	
+	
+	res.sendFile(path.join(__dirname, '../public', 'recipeMessage.html'));
+	}
 });
 
 router.get('/archivo', (req,res)=>{
@@ -151,7 +233,7 @@ router.post('/getRecipesByCurrentUser', (req,res)=>{
 });
 
 function getRecipes(user, callback){
-	table_recipe.orderByChild('pacientemail').equalTo(user).on("value", function(snapshot) {
+	recipe.orderByChild('pacientemail').equalTo(user).on("value", function(snapshot) {
 
 		if(snapshot.val()==null){
 			callback(null);

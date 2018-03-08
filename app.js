@@ -20,6 +20,8 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/',userModule);
 
 
+
+
 var server = app.listen(8080 , ()=>{
                         
     console.log("Server prendido");	
