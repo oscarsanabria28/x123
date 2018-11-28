@@ -18,7 +18,7 @@ var db_users_info       = db.ref('users-info');
 var recipe      = db.ref('recipe');
 
 const PROFILE_DOCTOR="doctor";
-const PROFILE_PACIENT="pacient";
+const PROFILE_PACIENT="patient";
 
 
 /*router.use(function (req, res, next) {
@@ -49,10 +49,10 @@ router.get('/bBaseUsuario', (req,res)=>{
 	var passw   = req.body.password;
 	
 	db_users_info.push({
-		username: "bryanpacient",
+		username: "carlosdotor",
 		password: "pass123",
-		mail: "bryan_mg125@hotmail.com",
-		profile:"pacient"
+		mail: "carlosdotorpaciente@hotmail.com",
+		profile:"patient"
 	});
 	
 	ConsolLog.logger(usuario);

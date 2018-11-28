@@ -22,7 +22,7 @@ app.use('/',userModule);
 
 
 
-var server = app.listen(8080 , ()=>{
+var server = app.listen(3030 , ()=>{
                         
     console.log("Server prendido");	
                         

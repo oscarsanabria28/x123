@@ -4,8 +4,8 @@
         <title>Login</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/estilos.css">
-    
-  
+
+
     <script src="/js/util.js"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -21,25 +21,25 @@
       </div>
       <form action="validateUser" enctype="application/x-www-form-urlencoded" method="POST" id="form-login">
         <div class="form-group">
-          
+
           <input type="email" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Email" required="true">
           <small id="emailHelp" class="form-text text-muted">Jamás compartiremos tu email con alguién más.</small>
         </div>
         <div class="form-group">
-          
+
           <input type="password" class="form-control" name="password" placeholder="Contraseña" required="true">
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Ingresar</button>
-        
-        
+
+
       </form>
     </div>
-    
+
 
     <script type="text/javascript">
       $( document ).ready(function() {
-       
+
         $('#form-login').on('click', 'form button[type=submit]', function(e) {
           var isValid = $(e.target).parents('form').isValid();
           if(!isValid) {
